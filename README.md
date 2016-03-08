@@ -3,7 +3,7 @@ Jython Annotation Tools is a JAVA-Library that enables the use of native Java an
 
 Annotations are managed through a decorator defined by the Jython class <b>net.wstech2.jython.annotationtools.A_</b> (imported as <b>"_"</b> or wrapped by <b>"annToDec()"</b>).
 
-It works by storing the selected annotation class and its optional attributes into a dictionary persisted as an attribute of the annotation owner's container. 
+It works by storing  the selected annotation class and its optional attributes into a dictionary persisted as an attribute of the annotation owner's container. 
 This information is then consumed by the proxy maker during the instrumentation phase to generate and load the class bytecode of the Java Proxy who, in turn, encapsulates the Jython class instance.
 
 The decorator <b>"@_"</b> receives at least 1 parameter, informing the class of the annotation. This is a real java class which was imported (as can be seen in the examples). 
