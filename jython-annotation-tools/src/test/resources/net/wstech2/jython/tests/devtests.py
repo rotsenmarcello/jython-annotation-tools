@@ -32,16 +32,16 @@ from java.lang import Deprecated
 from java.util import Map
 from java.util import List
 
-from net.wstech2.jython.annotationtools.java import JavaAwareMain
-from net.wstech2.jython.annotationtools.java import JavaAware
-from net.wstech2.jython.annotationtools.java import JavaClassAnnotations
+from annotations.java import JavaAwareTests
+from annotations.java import JavaAware
+from annotations.java import JavaClassAnnotations
 from net.wstech2.jython.tests.java import SampleAnnotation
-from net.wstech2.jython.annotationtools.java import JavaPublicMethod
-from net.wstech2.jython.annotationtools.java import JavaBeanAttribute
+from annotations.java import JavaPublicMethod
+from annotations.java import JavaBeanAttribute
 
-from net.wstech2.jython.annotationtools import createProxyMaker
-from net.wstech2.jython.annotationtools import A_ as _
-from net.wstech2.jython.annotationtools import A_
+from annotations import createProxyMaker
+from annotations import A_ as _
+from annotations import A_
 
 
 class Test(JavaAware):

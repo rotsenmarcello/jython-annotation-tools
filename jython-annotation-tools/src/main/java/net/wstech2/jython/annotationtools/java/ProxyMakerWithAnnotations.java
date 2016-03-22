@@ -44,6 +44,11 @@ import org.python.core.PyList;
 import org.python.core.PyObject;
 import org.python.core.PyString;
 
+import annotations.java.JavaAttribute;
+import annotations.java.JavaBeanAttribute;
+import annotations.java.JavaClassAnnotations;
+import annotations.java.JavaPublicMethod;
+
 public class ProxyMakerWithAnnotations extends CustomMakerWithSystemClassLoader {
 
 	public static final String ANNOTATIONS_DICT_KEY = "annotations";
