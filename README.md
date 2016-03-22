@@ -1,7 +1,7 @@
 # Overview
 Jython Annotation Tools is a JAVA-Library that enables the use of native Java annotations in Jython scripts and, additionally, offers some basic support for integration of Jython objects as beans in a SpringFramework context.
 
-Annotations are managed through a decorator defined by the Jython class <b>net.wstech2.jython.annotationtools.A_</b> (imported as <b>"_"</b> or wrapped by <b>"annToDec()"</b>).
+Annotations are managed through a decorator defined by the Jython class <b>annotations.A_</b> (imported as <b>"_"</b> or wrapped by <b>"annToDec()"</b>).
 
 It works by storing  the selected annotation class and its optional attributes into a dictionary persisted as an attribute of the annotation owner's container. 
 This information is then consumed by the proxy maker during the instrumentation phase to generate and load the class bytecode of the Java Proxy who, in turn, encapsulates the Jython class instance.
@@ -21,15 +21,15 @@ For example, the following Jython decorator code:
      @Qualifier("beanName")
  ```
 
-Alternatively it is possible to import the Java annotation with the auxiliary function <b>annToDec()</b> from the module <b>net.wstech2.jython.annotationtools</b>.
+Alternatively it is possible to import the Java annotation with the auxiliary function <b>annToDec()</b> from the module <b>annotations</b>.
 This function will wrap the annotation and present it as decorator.
 
 For example: 
 ```python
-    from net.wstech2.jython.annotationtools import  annToDec
+    from annotations import  annToDec
     
     RequestMapping=annToDec('org.springframework.web.bind.annotation.RequestMapping')
-    JavaPublicMethod=annToDec('net.wstech2.jython.annotationtools.java.JavaPublicMethod')
+    JavaPublicMethod=annToDec('annotations.java.JavaPublicMethod')
     
     class ... :
     
@@ -44,7 +44,7 @@ For example:
 ```
 
 A Jython class intending to make use of Java annotations must descend from a Java class or implement at least 1 Java interface.
-The empty interface <b>net.wstech2.jython.annotationtools.java.JavaAware</b> can be used when no other interface or parent is required.
+The empty interface <b>annotations.java.JavaAware</b> can be used when no other interface or parent is required.
 
 # Compatibility between Java annotations and Jython decorators
 
@@ -148,7 +148,7 @@ The proxy maker will identify this configuration and process the "default value"
 
 Example:
 ```python
-    JavaPublicMethod=annToDec('net.wstech2.jython.annotationtools.java.JavaPublicMethod')
+    JavaPublicMethod=annToDec('annotations.java.JavaPublicMethod')
     RequestMapping=annToDec('org.springframework.web.bind.annotation.RequestMapping')
     PathVariable=annToDec('org.springframework.web.bind.annotation.PathVariable')
 
@@ -190,13 +190,13 @@ from java.util import List
 from java.io import Serializable
 
 
-from net.wstech2.jython.annotationtools.java import JavaAware
+from annotations.java import JavaAware
 from javax.persistence import EntityManager
 from javax.persistence import EntityManagerFactory
 from javax.persistence import Persistence
 
-from net.wstech2.jython.annotationtools import createProxyMaker
-from net.wstech2.jython.annotationtools import annToDec
+from annotations import createProxyMaker
+from annotations import annToDec
 from javax.persistence import GenerationType
 from javax.persistence import TemporalType
 
@@ -207,10 +207,10 @@ Table=annToDec('javax.persistence.Table')
 Temporal=annToDec('javax.persistence.Temporal')
 GeneratedValue=annToDec('javax.persistence.GeneratedValue')
 
-JavaClassAnnotations=annToDec('net.wstech2.jython.annotationtools.java.JavaClassAnnotations')
-JavaPublicMethod=annToDec('net.wstech2.jython.annotationtools.java.JavaPublicMethod')
-JavaBeanAttribute=annToDec('net.wstech2.jython.annotationtools.java.JavaBeanAttribute')
-JavaAttribute=annToDec('net.wstech2.jython.annotationtools.java.JavaAttribute')
+JavaClassAnnotations=annToDec('annotations.java.JavaClassAnnotations')
+JavaPublicMethod=annToDec('annotations.java.JavaPublicMethod')
+JavaBeanAttribute=annToDec('annotations.java.JavaBeanAttribute')
+JavaAttribute=annToDec('annotations.java.JavaAttribute')
 
 
 class Employee(JavaAware, Serializable):
@@ -366,18 +366,18 @@ from java.lang import Void
 from java.util import Date
 from java.util import List
 
-from net.wstech2.jython.annotationtools.java import JavaAware
+from annotations.java import JavaAware
 from org.springframework.boot import SpringApplication
 from org.springframework.ui import Model
 
-from net.wstech2.jython.annotationtools import  annToDec
-from net.wstech2.jython.annotationtools import createProxyMaker
+from annotations import  annToDec
+from annotations import createProxyMaker
 
 
 ###Define Decorators based on Java annotations
-JavaClassAnnotations=annToDec('net.wstech2.jython.annotationtools.java.JavaClassAnnotations')
-JavaPublicMethod=annToDec('net.wstech2.jython.annotationtools.java.JavaPublicMethod')
-JavaBeanAttribute=annToDec('net.wstech2.jython.annotationtools.java.JavaBeanAttribute')
+JavaClassAnnotations=annToDec('annotations.java.JavaClassAnnotations')
+JavaPublicMethod=annToDec('annotations.java.JavaPublicMethod')
+JavaBeanAttribute=annToDec('annotations.java.JavaBeanAttribute')
 Autowired=annToDec('org.springframework.beans.factory.annotation.Autowired')
 Qualifier=annToDec('org.springframework.beans.factory.annotation.Qualifier')
 Bean=annToDec('org.springframework.context.annotation.Bean')
@@ -456,3 +456,6 @@ def runTest():
 if __name__ == '__builtin__' or __name__ == '__main__':
     runTest()
 ```
+
+
+
