@@ -25,30 +25,36 @@
 
 package net.wstech2.jython.annotationtools.java.spring;
 
+import org.python.core.Py;
+import org.python.core.PyObject;
+import org.python.core.PySystemState;
 import org.python.util.PythonInterpreter;
 
 public class JythonBeanFactory {
-	
+
 	private static JythonBeanFactory instance = null;
 	private static Object block = new Object();
-	PythonInterpreter interpreter= new PythonInterpreter();
-	
-	public JythonBeanFactory(){
-	}
-	
-	public static JythonBeanFactory getInstance(){
-        if(instance == null){
-        	synchronized(block){
-        		if(instance == null){
-        			instance = new JythonBeanFactory();
-        		}
-        	}
-        }
-        return instance;
-    }
+	PythonInterpreter interpreter = new PythonInterpreter();
+	private static PySystemState state = new PySystemState();
+	private static PyObject importer = state.getBuiltins().__getitem__(Py.newString("__import__"));
 
-	public Object createObject(String moduleName, String className){
-		interpreter.exec("from " + moduleName + " import " + moduleName);
-		return interpreter.get(moduleName).__getattr__(className).__call__().__tojava__(Object.class);
+	public JythonBeanFactory() {
+	}
+
+	public static JythonBeanFactory getInstance() {
+		if (instance == null) {
+			synchronized (block) {
+				if (instance == null) {
+					instance = new JythonBeanFactory();
+				}
+			}
+		}
+		return instance;
+	}
+
+	public Object createInstance(String moduleName, String className) {
+		PyObject module = importer.__call__(Py.newString(moduleName));
+		PyObject klass = module.__getattr__(className);
+		return klass.__call__().__tojava__(Object.class);
 	}
 }
