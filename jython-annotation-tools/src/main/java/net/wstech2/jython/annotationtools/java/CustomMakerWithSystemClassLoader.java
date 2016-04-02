@@ -14,25 +14,15 @@
 package net.wstech2.jython.annotationtools.java;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.python.compiler.ClassFileUtils;
 import org.python.compiler.Code;
 import org.python.compiler.CustomMaker;
 import org.python.core.Py;
-import org.python.core.PyDictionary;
-import org.python.core.PyList;
 import org.python.core.PyObject;
-import org.python.core.PyString;
 
 public class CustomMakerWithSystemClassLoader extends CustomMaker {
 

@@ -28,8 +28,6 @@ package annotations.java;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import org.omg.CORBA.portable.ValueBase;
-
 @Retention( RetentionPolicy.RUNTIME )
 public @interface JavaBeanAttribute {
 	Class<?> value() default Object.class;

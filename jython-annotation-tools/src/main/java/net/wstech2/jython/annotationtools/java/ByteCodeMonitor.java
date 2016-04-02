@@ -28,17 +28,12 @@ package net.wstech2.jython.annotationtools.java;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.net.URI;
-import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
 import org.python.core.BytecodeNotification;
 import org.python.core.BytecodeNotification.Callback;
 
