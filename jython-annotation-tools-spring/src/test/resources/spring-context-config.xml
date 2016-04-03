@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+           
+           
+<bean id="JythonBeanFactory" class="net.wstech2.jython.annotationtools.java.spring.JythonBeanFactory">
+</bean>
+
+<bean id="JythonDataProducer"
+      factory-bean="JythonBeanFactory"
+      factory-method="createInstance">
+      <constructor-arg type="java.lang.String" value="springtests" />
+      <constructor-arg type="java.lang.String" value="DataProducer" />
+</bean>
+                 
+  <bean id="JavaDataConsumer" class="net.wstech2.jython.tests.java.spring.JavaDataConsumer">
+    <property name="producer" ref="JythonDataProducer" />
+  </bean>
+
+</beans>
