@@ -46,6 +46,57 @@ For example:
 A Jython class intending to make use of Java annotations must descend from a Java class or implement at least 1 Java interface.
 The empty interface <b>annotations.java.JavaAware</b> can be used when no other interface or parent is required.
 
+# Usage
+
+1. Download the file jython-annotation-tools.jar and put it in the java classpath of your application.
+
+2. Download the python module annotations.py and put it in the python syspath of your application.
+
+3. In the script, import the auxiliary functions of the annotations module as follows:
+
+  ```python
+  from annotations import createProxyMaker
+  from annotations import annToDec
+  ```
+
+4. For every annotation, "import" it with the auxiliary function annToDec
+
+  ```python
+  JavaClassAnnotations=annToDec('annotations.java.JavaClassAnnotations')
+  ```
+
+5. In order to use the annotation tools on a jython class, this class has to descend from a java class or interface. If no specific java class/interface is necessary, the interface <b>annotations.java.JavaAware</b> can the used.
+  The class attributes <b>__proxymaker__</b> and <b>__module__</b> must be defined to identify, respectively, the function used to create the java class inside the VM and its package name.
+  Also, an empty method decorated with <b>@JavaClassAnnotations</b> must be defined. This method is used to receive all annotations targeted at the class.
+
+  ```python
+  from annotations.java import JavaAware
+  from annotations import createProxyMaker
+  from annotations import annToDec
+  ...
+  
+  JavaClassAnnotations=annToDec('annotations.java.JavaClassAnnotations')
+  
+  ...
+  
+  class AClass(JavaAware):
+  
+    ...
+    
+    __proxymaker__ = createProxyMaker
+    
+    __module__ = 'java.package.of.the.generated.class.in.the.vm'
+    
+    @JavaClassAnnotations
+    def __classannotations__(self): pass
+    
+    ...
+  ```
+
+6. Consult the following sections and examples to obtain more information on the different types of annotations and how to use them in jython scripts.
+
+
+
 # Compatibility between Java annotations and Jython decorators
 
 Python/Jython decorators can be applied only to classes or methods, but not fields. Moreover, given the way Jython loads its classes as proxies, it is not possible to use class decorators to pass annotation informations, because when the decorator is processed the java proxy class is already in place. 
@@ -172,7 +223,7 @@ If executing  from an Eclipse "Run Configuration", the "VM Arguments" of the "Ar
 
 ```shell
 -Dorg.python.compiler.bytecodemonitor.exportdir="${project_loc:/jython-annotation-tools}/target/classes/"
--Dorg.python.compiler.syspath.append="${project_loc:/jython-annotation-tools}/src/main/resources/;${project_loc:/jython-annotation-tools}/src/test/resources/"
+-Dorg.python.compiler.syspath.append="${project_loc:/jython-annotation-tools}/src/main/resources/;${project_loc:/jython-annotation-tools}/src/test/resources/;${project_loc:/jython-annotation-tools-spring}/src/main/resources/;${project_loc:/jython-annotation-tools-spring}/src/test/resources/;${project_loc:/jython-annotation-tools-samples}/src/main/resources/;${project_loc:/jython-annotation-tools-samples}/src/test/resources/"
 ```
 
 # Example with JPA/Hibernate Annotations
