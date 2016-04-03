@@ -50,7 +50,7 @@ The empty interface <b>annotations.java.JavaAware</b> can be used when no other 
 
 1. Download the file jython-annotation-tools.jar and put it in the java classpath of your application.
 
-2. Download the python module annotations.py put it in the python syspath of your application.
+2. Download the python module annotations.py and put it in the python syspath of your application.
 
 3. In the script, import the auxiliary functions of the annotations module as follows:
 
@@ -65,8 +65,8 @@ The empty interface <b>annotations.java.JavaAware</b> can be used when no other 
   JavaClassAnnotations=annToDec('annotations.java.JavaClassAnnotations')
   ```
 
-5. In order to "enable" the module on a jython class it has to descend from a java class or interface. If no specific java class/interface is necessary, the interface <b>annotations.java.JavaAware</b> can the used.
-  The class attributes <b>__proxymaker__</b> and <b>__module__</b> must be defined to identify, respectively, the function used to create the java class inside the VM and this class package name.
+5. In order to use the annotation tools on a jython class, this class has to descend from a java class or interface. If no specific java class/interface is necessary, the interface <b>annotations.java.JavaAware</b> can the used.
+  The class attributes <b>__proxymaker__</b> and <b>__module__</b> must be defined to identify, respectively, the function used to create the java class inside the VM and its package name.
   Also, an empty method decorated with <b>@JavaClassAnnotations</b> must be defined. This method is used to receive all annotations targeted at the class.
 
   ```python
