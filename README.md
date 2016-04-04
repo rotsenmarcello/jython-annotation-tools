@@ -48,9 +48,9 @@ The empty interface <b>annotations.java.JavaAware</b> can be used when no other 
 
 # Usage
 
-1. Download the file jython-annotation-tools.jar and put it in the java classpath of your application.
+1. Download the file jython-annotation-tools-0.9.0.jar from http://search.maven.org/#artifactdetails|net.wstech2|jython-annotation-tools|0.9.0|jar and put it in the java classpath of your application.
 
-2. Download the python module annotations.py and put it in the python syspath of your application.
+2. Download the python module annotations.py from https://github.com/rotsenmarcello/jython-annotation-tools/blob/master/jython-annotation-tools/src/main/resources/annotations.py and put it in the python syspath of your application.
 
 3. In the script, import the auxiliary functions of the annotations module as follows:
 
