@@ -21,10 +21,13 @@ public class JavaAwareTests {
 		engine = new ScriptEngineManager().getEngineByName("python");
 		engine.eval("import sys");
 
+		
 		for (String syspath : System.getProperty("org.python.compiler.syspath.append").split(File.pathSeparator)) {
+			System.out.println(String.format("Adding [%s] to sys.path", syspath));
 			engine.eval(String.format("sys.path.append('%s')", syspath.replace('\\', '/')));
 		}
 	}
+
 	
 	@Test
 	public void testJPAHibernate() throws ScriptException {
