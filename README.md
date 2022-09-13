@@ -167,7 +167,7 @@ no parameters, this attributed can be disregarded and the method annotated as ju
     @JavaPublicMethod( returnType = ... ).
 ```
 
-For example, the Java definitions:
+For example,  these Java definitions :
 ```java
     public void setData(String name, Integer age){
         this.name = name;
@@ -211,7 +211,7 @@ Example:
         return "Asked for Id/Section [%s][%s]." % ( id,section)
 ```
 
-# Running the examples
+# Running  examples
 
 In order to run the examples it is required to define 2 system properties:
 
